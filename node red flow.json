@@ -1,0 +1,738 @@
+[
+    {
+        "id": "0d276c5988c5cedc",
+        "type": "tab",
+        "label": "Flow 6",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "164a12df5b0b58ea",
+        "type": "mqtt in",
+        "z": "0d276c5988c5cedc",
+        "name": "",
+        "topic": "plant/irrigation/data",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "b7e2aa0b1687b293",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 90,
+        "y": 160,
+        "wires": [
+            [
+                "e24509014bc534a0",
+                "e5e5b418c6d11c2b"
+            ]
+        ]
+    },
+    {
+        "id": "e24509014bc534a0",
+        "type": "debug",
+        "z": "0d276c5988c5cedc",
+        "name": "debug 18",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "5b5143d2ba920220",
+        "type": "ui_switch",
+        "z": "0d276c5988c5cedc",
+        "name": "",
+        "label": "Tap Control",
+        "tooltip": "",
+        "group": "b1592dd534f3bd3b",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "{\"switch\" : \"ON\"}",
+        "onvalueType": "json",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "{\"switch\" : \"OFF\"}",
+        "offvalueType": "json",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 130,
+        "y": 560,
+        "wires": [
+            [
+                "a2565a89b2d98a80",
+                "c08b2d4152fdd3d3"
+            ]
+        ]
+    },
+    {
+        "id": "a2565a89b2d98a80",
+        "type": "mqtt out",
+        "z": "0d276c5988c5cedc",
+        "name": "",
+        "topic": "plant/irrigation/manual",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b7e2aa0b1687b293",
+        "x": 620,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "c08b2d4152fdd3d3",
+        "type": "debug",
+        "z": "0d276c5988c5cedc",
+        "name": "debug 19",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "5d247d4bbfdf8687",
+        "type": "function",
+        "z": "0d276c5988c5cedc",
+        "name": "Temperature",
+        "func": "var temperature = msg.payload.temperature;\nreturn {payload:temperature}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 80,
+        "wires": [
+            [
+                "1a68189170fb8046",
+                "d4486bc2b60f5104"
+            ]
+        ]
+    },
+    {
+        "id": "7b51bf9f67db9f43",
+        "type": "function",
+        "z": "0d276c5988c5cedc",
+        "name": "Humidity",
+        "func": "var humidity = msg.payload.humidity;\nreturn {payload:humidity};\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 180,
+        "wires": [
+            [
+                "25a2c5a63d06a566",
+                "8aa8bac7a6c06f39"
+            ]
+        ]
+    },
+    {
+        "id": "6de36e517a2fbcf9",
+        "type": "function",
+        "z": "0d276c5988c5cedc",
+        "name": "Soil Moisture",
+        "func": "var soil_moisture = msg.payload.soil;\nreturn {payload:soil_moisture};\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 300,
+        "wires": [
+            [
+                "fea735589a763fb8",
+                "5cc3e95cb2e293cc"
+            ]
+        ]
+    },
+    {
+        "id": "1a68189170fb8046",
+        "type": "ui_gauge",
+        "z": "0d276c5988c5cedc",
+        "name": "Temperature Gauge",
+        "group": "aa378c23f5a85f36",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperature ",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "-15",
+        "max": "40",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 730,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "25a2c5a63d06a566",
+        "type": "ui_gauge",
+        "z": "0d276c5988c5cedc",
+        "name": "Humidity Gauge",
+        "group": "aa378c23f5a85f36",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Humidty ",
+        "label": "ω",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 740,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "fea735589a763fb8",
+        "type": "ui_gauge",
+        "z": "0d276c5988c5cedc",
+        "name": "Soil Moisture Gauge",
+        "group": "aa378c23f5a85f36",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Soil Moisture",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "2000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 680,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "bfcfbf1479bfd355",
+        "type": "influxdb batch",
+        "z": "0d276c5988c5cedc",
+        "influxdb": "56bd313391fb8a03",
+        "precision": "",
+        "retentionPolicy": "",
+        "name": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "IPB",
+        "bucket": "AgricIrrigation",
+        "x": 1110,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "d4486bc2b60f5104",
+        "type": "function",
+        "z": "0d276c5988c5cedc",
+        "name": "Temp",
+        "func": "msg.payload = [\n  {\n    measurement: \"plant\",\n    fields: {\n      temperature: msg.payload,\n    },\n    tags: {\n      sensorID: \"1\",\n      location: \"external_area\"\n    }\n  }\n];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 100,
+        "wires": [
+            [
+                "bfcfbf1479bfd355"
+            ]
+        ]
+    },
+    {
+        "id": "8aa8bac7a6c06f39",
+        "type": "function",
+        "z": "0d276c5988c5cedc",
+        "name": "Hum",
+        "func": "msg.payload = [\n  {\n    measurement: \"plant\",\n    fields: {\n      humidity: msg.payload,\n    },\n    tags: {\n      sensorID: \"2\",\n      location: \"external_area\"\n    }\n  }\n];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 220,
+        "wires": [
+            [
+                "bfcfbf1479bfd355"
+            ]
+        ]
+    },
+    {
+        "id": "5cc3e95cb2e293cc",
+        "type": "function",
+        "z": "0d276c5988c5cedc",
+        "name": "Most.",
+        "func": "msg.payload = [\n  {\n    measurement: \"plant\",\n    fields: {\n      soil_moisture: msg.payload,\n    },\n    tags: {\n      sensorID: \"3\",\n      location: \"external_area\"\n    }\n  }\n];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 360,
+        "wires": [
+            [
+                "bfcfbf1479bfd355"
+            ]
+        ]
+    },
+    {
+        "id": "4f56a4fe2b23698c",
+        "type": "inject",
+        "z": "0d276c5988c5cedc",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 460,
+        "wires": [
+            [
+                "fd70838374a94021"
+            ]
+        ]
+    },
+    {
+        "id": "fd70838374a94021",
+        "type": "influxdb in",
+        "z": "0d276c5988c5cedc",
+        "influxdb": "56bd313391fb8a03",
+        "name": "",
+        "query": "from(bucket: \"AgricIrrigation\")\n  |> range(start: -1d)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"plant\")\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\" or r[\"_field\"] == \"soil_moisture\" or r[\"_field\"] == \"temperature\")\n  |> filter(fn: (r) => r[\"location\"] == \"external_area\")\n  |> yield(name: \"mean\")",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "IPB",
+        "x": 410,
+        "y": 460,
+        "wires": [
+            [
+                "769cf26de97e82fe"
+            ]
+        ]
+    },
+    {
+        "id": "769cf26de97e82fe",
+        "type": "function",
+        "z": "0d276c5988c5cedc",
+        "name": "function 2",
+        "func": "// Ensure input is an array\nlet input = msg.payload;\n\nif (!Array.isArray(input)) {\n    node.error(\"Expected msg.payload to be an array\", msg);\n    return null;\n}\n\nlet data = {\n    temperature: [],\n    humidity: [],\n    soil_moisture: []\n};\nlet labels = [];\n\n// Safely sort by timestamp\ninput = input.filter(row => row._time && row._field && row._value !== undefined);\ninput.sort((a, b) => new Date(a._time).getTime() - new Date(b._time).getTime());\n\n// Format time and organize data\ninput.forEach(row => {\n    let date = new Date(row._time);\n    let timeLabel = date.toTimeString().slice(0, 5); // \"HH:MM\"\n\n    // Add label if new\n    if (!labels.includes(timeLabel)) {\n        labels.push(timeLabel);\n    }\n\n    if (row._field === \"temperature\") {\n        data.temperature.push(row._value);\n    } else if (row._field === \"humidity\") {\n        data.humidity.push(row._value);\n    } else if (row._field === \"soil_moisture\") {\n        data.soil_moisture.push(row._value);\n    }\n});\n\n// Send data to ui_chart\nmsg.payload = [\n    {\n        series: [\"temperature\", \"humidity\", \"soil_moisture\"],\n        data: [\n            data.temperature,\n            data.humidity,\n            data.soil_moisture\n        ],\n        labels: labels\n    }\n];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 460,
+        "wires": [
+            [
+                "48be0ad29294b2c8",
+                "225aad1269e9a0a2"
+            ]
+        ]
+    },
+    {
+        "id": "48be0ad29294b2c8",
+        "type": "debug",
+        "z": "0d276c5988c5cedc",
+        "name": "debug 21",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "e5e5b418c6d11c2b",
+        "type": "function",
+        "z": "0d276c5988c5cedc",
+        "name": "decrypt",
+        "func": "const xorKey = 0x5A;\nlet encrypted = msg.payload.toString();  // ensure it's a string\nlet decrypted = \"\";\n\n// XOR decryption loop\nfor (let i = 0; i < encrypted.length; i++) {\n    decrypted += String.fromCharCode(encrypted.charCodeAt(i) ^ xorKey);\n}\n\ntry {\n    msg.payload = JSON.parse(decrypted);  // Convert back to JSON\n} catch (err) {\n    node.error(\"Decryption failed: \" + err.message);\n    msg.payload = { error: \"Failed to decrypt or parse data.\" };\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 190,
+        "y": 280,
+        "wires": [
+            [
+                "5d247d4bbfdf8687",
+                "7b51bf9f67db9f43",
+                "6de36e517a2fbcf9",
+                "d8397f37b0347142"
+            ]
+        ]
+    },
+    {
+        "id": "d8397f37b0347142",
+        "type": "debug",
+        "z": "0d276c5988c5cedc",
+        "name": "debug 23",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "c3d1e51d9533d508",
+        "type": "mqtt in",
+        "z": "0d276c5988c5cedc",
+        "name": "",
+        "topic": "plant/irrigation/status",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "b7e2aa0b1687b293",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 640,
+        "wires": [
+            [
+                "bb3563104b32809b",
+                "9271aadcc853709d"
+            ]
+        ]
+    },
+    {
+        "id": "bb3563104b32809b",
+        "type": "debug",
+        "z": "0d276c5988c5cedc",
+        "name": "debug 20",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "293e282b87b52c43",
+        "type": "mqtt in",
+        "z": "0d276c5988c5cedc",
+        "name": "",
+        "topic": "plant/irrigation/alert",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "b7e2aa0b1687b293",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 760,
+        "wires": [
+            [
+                "978cff74ef051e1b",
+                "6b950550da0f4378",
+                "f07abfd63feaaf92"
+            ]
+        ]
+    },
+    {
+        "id": "978cff74ef051e1b",
+        "type": "debug",
+        "z": "0d276c5988c5cedc",
+        "name": "debug 22",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "225aad1269e9a0a2",
+        "type": "ui_chart",
+        "z": "0d276c5988c5cedc",
+        "name": "",
+        "group": "0829b8e9844c6420",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#14191f",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 950,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9271aadcc853709d",
+        "type": "ui_text",
+        "z": "0d276c5988c5cedc",
+        "group": "7614214ca38e5eaf",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Tap Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 730,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "6b950550da0f4378",
+        "type": "ui_text",
+        "z": "0d276c5988c5cedc",
+        "group": "7614214ca38e5eaf",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Tank Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 510,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "f07abfd63feaaf92",
+        "type": "ui_audio",
+        "z": "0d276c5988c5cedc",
+        "name": "Alert",
+        "group": "7614214ca38e5eaf",
+        "voice": "Samantha",
+        "always": "",
+        "x": 790,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "b7e2aa0b1687b293",
+        "type": "mqtt-broker",
+        "name": "authernative Public Broker",
+        "broker": "broker.emqx.io",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "b1592dd534f3bd3b",
+        "type": "ui_group",
+        "name": "Manual Control",
+        "tab": "27f8ff9a10194f74",
+        "order": 4,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "aa378c23f5a85f36",
+        "type": "ui_group",
+        "name": "Sensors",
+        "tab": "27f8ff9a10194f74",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "56bd313391fb8a03",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": 8086,
+        "protocol": "http",
+        "database": "database",
+        "name": "Agric Token",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://localhost:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "0829b8e9844c6420",
+        "type": "ui_group",
+        "name": "Chart",
+        "tab": "27f8ff9a10194f74",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7614214ca38e5eaf",
+        "type": "ui_group",
+        "name": "Alerts",
+        "tab": "27f8ff9a10194f74",
+        "order": 3,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "27f8ff9a10194f74",
+        "type": "ui_tab",
+        "name": "Agric",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

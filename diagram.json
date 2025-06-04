@@ -1,0 +1,58 @@
+{
+    "version": 1,
+    "author": "Anonymous maker",
+    "editor": "wokwi",
+    "parts": [
+      { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 28.8, "left": -4.76, "attrs": {} },
+      { "type": "wokwi-dht22", "id": "dht1", "top": -28.5, "left": -207, "attrs": {} },
+      {
+        "type": "wokwi-led",
+        "id": "led1",
+        "top": -22.8,
+        "left": 205.4,
+        "attrs": { "color": "red" }
+      },
+      { "type": "wokwi-potentiometer", "id": "pot1", "top": -78.1, "left": -144.2, "attrs": {} },
+      {
+        "type": "wokwi-resistor",
+        "id": "r1",
+        "top": 186.35,
+        "left": 144,
+        "attrs": { "value": "1000" }
+      },
+      {
+        "type": "wokwi-buzzer",
+        "id": "bz1",
+        "top": -93.6,
+        "left": 241.8,
+        "attrs": { "volume": "0.1" }
+      },
+      {
+        "type": "wokwi-hc-sr04",
+        "id": "ultrasonic1",
+        "top": -132.9,
+        "left": -52.1,
+        "attrs": { "distance": "272" }
+      }
+    ],
+    "connections": [
+      [ "esp:TX", "$serialMonitor:RX", "", [] ],
+      [ "esp:RX", "$serialMonitor:TX", "", [] ],
+      [ "pot1:VCC", "esp:3V3", "red", [ "v0" ] ],
+      [ "pot1:GND", "esp:GND.1", "black", [ "v0" ] ],
+      [ "pot1:SIG", "esp:32", "green", [ "v0" ] ],
+      [ "esp:2", "r1:1", "green", [ "h0" ] ],
+      [ "r1:2", "led1:A", "green", [ "v0", "h46.8" ] ],
+      [ "esp:GND.2", "led1:C", "black", [ "v0", "h115.2" ] ],
+      [ "dht1:GND", "esp:GND.1", "black", [ "v0" ] ],
+      [ "dht1:SDA", "esp:14", "green", [ "v0" ] ],
+      [ "dht1:VCC", "esp:3V3", "red", [ "v38.4", "h153.6", "v-57.6" ] ],
+      [ "ultrasonic1:VCC", "esp:3V3", "red", [ "v38.4", "h-57.6", "v48", "h19.2", "v9.6" ] ],
+      [ "ultrasonic1:GND", "esp:GND.1", "black", [ "v28.8", "h-106.8", "v192" ] ],
+      [ "ultrasonic1:ECHO", "esp:33", "green", [ "v57.6", "h-58.4", "v105.6" ] ],
+      [ "ultrasonic1:TRIG", "esp:25", "green", [ "v48", "h-58", "v124.8" ] ],
+      [ "bz1:1", "esp:GND.2", "green", [ "v0" ] ],
+      [ "bz1:2", "esp:17", "green", [ "v0" ] ]
+    ],
+    "dependencies": {}
+  }
