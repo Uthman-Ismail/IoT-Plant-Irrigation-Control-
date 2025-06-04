@@ -33,19 +33,6 @@ This project presents a smart irrigation control system using **ESP32**, various
 
 ---
 
-##  Project Structure
-
-iot-irrigation-project/
-├── irrigation_controller.ino        # ESP32 firmware
-├── diagram.json                     # Wokwi circuit diagram
-├── node-red-flow.json               # Node-RED flow export
-├── dashboard-screenshots/           # UI images
-├── report/                          # Full scientific report
-│   └── Smart_Irrigation_Report.pdf
-└── README.md
-
----
-
 ##  MQTT Topics
 
 - `plant/irrigation/data` → Encrypted sensor data
@@ -74,8 +61,7 @@ The full project is simulated on [Wokwi](https://wokwi.com/):
  Real-time serial monitor  
  Supports MQTT via WiFi emulator  
 
-
-⸻
+---
 
 Acknowledgments
 	•	Node-RED
